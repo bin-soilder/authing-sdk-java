@@ -22,7 +22,7 @@ import javax.crypto.Cipher
  */
 abstract class BaseClient(internal val userPoolId: String) {
     // 可选参数
-    var host: String = "https://core.authing.cn"
+    var host: String = "https://core.xauth.lucfish.com"
     var publicKey: String = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4xKeUgQ+Aoz7TLfAfs9+paePb" +
             "5KIofVthEopwrXFkp8OCeocaTHt9ICjTT2QeJh6cZaDaArfZ873GPUn00eOIZ7Ae" +
             "+TiA2BKHbCvloW3w5Lnqm70iSsUi5Fmu9/2+68GZRH9L7Mlh8cFksCicW2Y2W2uM" +
@@ -43,7 +43,7 @@ abstract class BaseClient(internal val userPoolId: String) {
     // graphql 端点
     private val endpoint: String
         get() {
-            return "$host/graphql/v2"
+            return "$host//v2/graphql"
         }
 
     private val client: OkHttpClient = OkHttpClient()

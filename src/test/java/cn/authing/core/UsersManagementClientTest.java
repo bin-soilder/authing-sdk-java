@@ -28,15 +28,20 @@ public class UsersManagementClientTest {
 
     @Before
     public void before() throws IOException, GraphQLException {
-        managementClient = new ManagementClient("59f86b4832eb28071bdd9214", "4b880fff06b080f154ee48c9e689a541");
-        managementClient.setHost("http://localhost:3000");
+        managementClient = new ManagementClient("7f74f487bc121542ad0c7e3d", "cb6254521050caf857855214bc9dba98");
+        managementClient.setHost("http://localhost:7001");
         usersManagementClient = managementClient.users();
 
         managementClient.requestToken().execute();
 
         email = randomString() + "@gmail.com";
-        password = "123456";
-        user = usersManagementClient.create(new CreateUserInput().withEmail(email).withPassword(password)).execute();
+        password = "123";
+        username = "gmail" + randomString();
+        user = usersManagementClient.create(new CreateUserInput()
+                .withEmail(email)
+                .withPassword(password)
+                .withUsername(username)
+                .build()).execute();
     }
 
     @After
@@ -115,5 +120,10 @@ public class UsersManagementClientTest {
     public void listPolicies() throws IOException, GraphQLException {
         PaginatedPolicyAssignments result = usersManagementClient.listPolicies(user.getId()).execute();
         Assert.assertTrue(result.getTotalCount() == 0);
+    }
+
+    @Test
+    public void checkLogin() throws IOException, GraphQLException {
+        System.out.println(managementClient.checkLoginStatus(new CheckLoginStatusParam()).execute());
     }
 }
