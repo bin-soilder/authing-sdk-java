@@ -35,6 +35,7 @@ class UsersManagementClient(private val client: ManagementClient) {
     /**
      * 创建新用户
      */
+
     fun create(userInfo: CreateUserInput): GraphQLCall<CreateUserResponse, User> {
         val param = CreateUserParam(userInfo)
         if (param.userInfo.password !== null) {
