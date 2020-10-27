@@ -38,7 +38,8 @@ class UsersManagementClient(private val client: ManagementClient) {
     fun create(userInfo: CreateUserInput): GraphQLCall<CreateUserResponse, User> {
         val param = CreateUserParam(userInfo)
         if (param.userInfo.password !== null) {
-            param.userInfo.password = client.encrypt(param.userInfo.password!!)
+            //param.userInfo.password = client.encrypt(param.userInfo.password!!)
+            param.userInfo.password = param.userInfo.password!!
         }
         return client.createGraphQLCall(
             param.createRequest(),

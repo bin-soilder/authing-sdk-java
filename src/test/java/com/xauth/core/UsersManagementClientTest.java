@@ -20,6 +20,7 @@ public class UsersManagementClientTest {
 
     private String email;
     private String password;
+    private String username;
     private User user;
 
     private String randomString() {
@@ -44,7 +45,6 @@ public class UsersManagementClientTest {
                 .build()).execute();
     }
 
-    @After
     public void after() throws IOException, GraphQLException {
         if (user == null) return;
         usersManagementClient.delete(user.getId()).execute();
@@ -57,8 +57,8 @@ public class UsersManagementClientTest {
     }
 
     @Test
-    public void create() {
-        Assert.assertEquals(user.getEmail(), email);
+    public void create() throws IOException, GraphQLException {
+        user=usersManagementClient.create(new CreateUserInput().withUsername("jjjj")).execute();
     }
 
     @Test
@@ -88,12 +88,12 @@ public class UsersManagementClientTest {
         Assert.assertTrue(users.size() > 0);
     }
 
-    @Test
-    public void delete() throws IOException, GraphQLException {
-        CommonMessage message = usersManagementClient.delete(user.getId()).execute();
-        user = null;
-        Assert.assertEquals(message.getCode().intValue(), 200);
-    }
+//    @Test
+//    public void delete() throws IOException, GraphQLException {
+//        CommonMessage message = usersManagementClient.delete(user.getId()).execute();
+//        user = null;
+//        Assert.assertEquals(message.getCode().intValue(), 200);
+//    }
 
     @Test
     public void deleteMany() throws IOException, GraphQLException {
