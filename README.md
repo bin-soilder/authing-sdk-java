@@ -11,17 +11,17 @@ Authing Java SDK 由两部分组成：`ManagementClient` 和 `AuthenticationClie
 在 build.gradle 内的 dependencies 中添加：
 
 ```
-implementation "cn.authing:java-core:3.0.1"
+implementation "com.xauth:java-core:3.0.1"
 ```
 
 ## 使用用户管理模块
 
 初始化 `ManagementClient` 需要 `userPoolId`（用户池 ID） 和 `secret`（用户池密钥）:
 
-> 你可以在此[了解如何获取 UserPoolId 和 Secret](https://docs.authing.cn/others/faq.html) .
+> 你可以在此[了解如何获取 UserPoolId 和 Secret](https://xauth.lucfish.com/) .
 
 ```java
-import cn.authing.core.mgmt.ManagementClient;
+import com.xauth.core.mgmt.ManagementClient;
 
 public class ManagementClientTest {
     public static void main(String[] args){
@@ -33,7 +33,7 @@ public class ManagementClientTest {
 现在 `managementClient` 实例就可以使用了。例如可以获取用户池中的用户列表：
 
 ```java
-import cn.authing.core.mgmt.ManagementClient;
+import com.xauth.core.mgmt.ManagementClient;
 
 public class ManagementClientTest {
     public static void main(String[] args){
@@ -47,10 +47,10 @@ public class ManagementClientTest {
 
 初始化 `ManagementClient` 需要 `userPoolId`（用户池 ID）：
 
-> 你可以在此[了解如何获取 UserPoolId](https://docs.authing.cn/others/faq.html) .
+> 你可以在此[了解如何获取 UserPoolId](https://xauth.lucfish.com/) .
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
+import com.xauth.core.auth.AuthenticationClient;
 
 public class AuthenticationClientTest {
     public static void main(String[] args){
@@ -62,7 +62,7 @@ public class AuthenticationClientTest {
 接下来可以进行注册登录等操作：
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
+import com.xauth.core.auth.AuthenticationClient;
 
 public class AuthenticationClientTest {
     public static void main(String[] args){
@@ -78,7 +78,7 @@ public class AuthenticationClientTest {
 完成登录之后，`update_profile` 等要求用户登录的方法就可用了：
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
+import com.xauth.core.auth.AuthenticationClient;
 
 public class AuthenticationClientTest {
     public static void main(String[] args){
@@ -96,7 +96,7 @@ public class AuthenticationClientTest {
 你也可以在初始化后设置 `AccessToken` 参数, 不需要每次都调用 `LoginByXXX` 方法:
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
+import com.xauth.core.auth.AuthenticationClient;
 
 public class AuthenticationClientTest {
     public static void main(String[] args){
@@ -109,7 +109,7 @@ public class AuthenticationClientTest {
 再次执行 `UpdateProfile` 方法，发现也成功了:
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
+import com.xauth.core.auth.AuthenticationClient;
 
 public class AuthenticationClientTest {
     public static void main(String[] args){
@@ -123,8 +123,8 @@ public class AuthenticationClientTest {
 ## 错误处理
 
 ```java
-import cn.authing.core.auth.AuthenticationClient;
-import cn.authing.core.graphql.GraphQLException;import java.io.IOException;
+import com.xauth.core.auth.AuthenticationClient;
+import com.xauth.core.graphql.GraphQLException;import java.io.IOException;
 
 
 public class AuthenticationClientTest {
@@ -143,7 +143,7 @@ public class AuthenticationClientTest {
 
 ## 获取帮助
 
-Join us on Gitter: [#authing-chat](https://gitter.im/authing-chat/community)
+Join us on Gitter: [#authing-chat](https://xauth.lucfish.com/)
 
 ## 接口索引
 

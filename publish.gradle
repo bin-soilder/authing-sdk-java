@@ -1,8 +1,8 @@
 apply plugin: 'maven-publish'
 
-def binApiKey = 'it is a secret'
-def binUser = "authing"
-def versionCode = '3.0.1'
+def binApiKey = '1cb84f9f8a49a1c6b9cbc6fa34c073cc3015b1e3'
+def binUser = "xxxx"
+def versionCode = '3.0.2'
 def pomConfig = {
     licenses {
         license {
@@ -23,7 +23,7 @@ def pomConfig = {
     }
 
     scm {
-        url "https://github.com/Authing/authing-java-sdk"
+        url "https://github.com/xxauth/authing-sdk-java"
     }
 }
 
@@ -44,14 +44,14 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId 'cn.authing'
+            groupId 'com.xauth'
             artifactId 'java-core'
             version versionCode
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', 'A leading identity authentication service platform')
-                root.appendNode('name', 'AuthingSDK')
-                root.appendNode('url', 'https://authing.cn/')
+                root.appendNode('name', 'XAuthSDK')
+                root.appendNode('url', 'https://xauth.lucfish.com/')
                 root.children().last() + pomConfig
             }
         }
@@ -76,7 +76,7 @@ bintray {
                 close = '1' //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
             }
         }
-        websiteUrl = 'https://authing.cn/'
+        websiteUrl = 'https://xauth.lucfish.com/'
         desc = 'A leading identity authentication service platform'
     }
 }
