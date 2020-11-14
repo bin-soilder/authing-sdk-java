@@ -1,10 +1,10 @@
 package com.xauth.core;
 
+import com.xauth.core.auth.AuthenticationClient;
 import com.xauth.core.graphql.GraphQLException;
 import com.xauth.core.mgmt.ManagementClient;
 import com.xauth.core.mgmt.UsersManagementClient;
 import com.xauth.core.types.*;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,11 +17,12 @@ import java.util.Random;
 public class UsersManagementClientTest {
     private ManagementClient managementClient;
     private UsersManagementClient usersManagementClient;
-
+    private AuthenticationClient client;
     private String email;
     private String password;
     private String username;
     private User user;
+
 
     private String randomString() {
         return Integer.toString(new Random().nextInt());
@@ -31,6 +32,8 @@ public class UsersManagementClientTest {
     public void before() throws IOException, GraphQLException {
         managementClient = new ManagementClient("7f74f487bc121542ad0c7e3d", "cb6254521050caf857855214bc9dba98");
         managementClient.setHost("http://localhost:7001");
+        client = new AuthenticationClient("7f74f487bc121542ad0c7e3d");
+        client.setHost("http://localhost:7001");
         usersManagementClient = managementClient.users();
 
         managementClient.requestToken().execute();
@@ -124,6 +127,10 @@ public class UsersManagementClientTest {
 
     @Test
     public void checkLogin() throws IOException, GraphQLException {
-        System.out.println(managementClient.checkLoginStatus(new CheckLoginStatusParam()).execute());
+        String phone = "17743127018";
+        String code = "123456";
+        User user=client.loginByPhoneCode(new LoginByPhoneCodeInput(phone, code,false)).execute();
+        JwtTokenStatus status=managementClient.checkLoginStatus(new CheckLoginStatusParam().withToken(user.getToken())).execute();
+        Assert.assertEquals(status.getCode().intValue(), 0);
     }
 }

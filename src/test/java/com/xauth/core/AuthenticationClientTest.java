@@ -19,8 +19,8 @@ public class AuthenticationClientTest {
 
     @Before
     public void before() {
-        client = new AuthenticationClient("59f86b4832eb28071bdd9214");
-        client.setHost("http://localhost:3000");
+        client = new AuthenticationClient("7f74f487bc121542ad0c7e3d");
+        client.setHost("http://localhost:7001");
     }
 
     @Test
@@ -87,12 +87,12 @@ public class AuthenticationClientTest {
 
     @Test
     public void checkLoginStatus() throws IOException, GraphQLException {
-        String username = "test";
-        String password = "123456";
-        client.loginByUsername(new LoginByUsernameInput(username, password)).execute();
+        String phone = "17743127018";
+        String code = "123456";
+        client.loginByPhoneCode(new LoginByPhoneCodeInput(phone, code,true)).execute();
 
         JwtTokenStatus status = client.checkLoginStatus().execute();
-        Assert.assertEquals(status.getCode().intValue(), 200);
+        Assert.assertEquals(status.getCode().intValue(), 0);
     }
 
     @Test
